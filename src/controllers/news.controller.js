@@ -4,7 +4,7 @@ const create = async (req, res) => {
     try {
         const { title, text, banner } = req.body
 
-        if(!title || !text || !banner) {
+        if (!title || !text || !banner) {
             res.status(400).send({
                 message: "Submit all fields for registration"
             })
@@ -14,7 +14,7 @@ const create = async (req, res) => {
             title,
             text,
             banner,
-            user: {_id: "646a0b8193f77b0fb50971bc"}
+            user: { _id: "646a0b8193f77b0fb50971bc" }
         })
 
         res.send(201)
@@ -23,8 +23,13 @@ const create = async (req, res) => {
     }
 }
 
-const findAll = (req, res) => {
-    const news = []
+const findAll = async (req, res) => {
+    const news = await findAllService()
+
+    if (news.length === 0) {
+        return res.status(400).send({ message: "There are no registered news" })
+    }
+
     res.send(news)
 }
 
