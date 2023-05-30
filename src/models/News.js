@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const NewsSquema = new mongoose.Schema({
+const NewsSchema = new mongoose.Schema({
     title: {
         type: String,
         require: true
@@ -18,7 +18,7 @@ const NewsSquema = new mongoose.Schema({
         default: Date.now()
     },
     user: {
-        type: mongoose.Squema.Type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
@@ -32,6 +32,6 @@ const NewsSquema = new mongoose.Schema({
     },
 })
 
-const News = mongoose.model("News", NewsSquema)
+const News = mongoose.model("News", NewsSchema)
 
 export default News
